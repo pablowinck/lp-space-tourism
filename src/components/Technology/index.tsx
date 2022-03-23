@@ -1,28 +1,35 @@
 import React, { useState } from "react";
 import { useFetchTechnology } from "../../hooks/useTechnology";
-import Container from "../Container";
 import Content from "../Content";
 import Message from "../Message";
 import Title from "../Title";
+
+const Container: React.FC = ({ children }) => {
+  return (
+    <div className={`h-screen bg-technology-desktop bg-cover bg-center`}>
+      {children}
+    </div>
+  );
+};
 
 const Technology: React.FC = () => {
   const [selected, setSelected] = useState(0);
   const { isLoading, data, isError } = useFetchTechnology();
   if (isLoading)
     return (
-      <Container type="technology">
+      <Container>
         <Message>Loading...</Message>
       </Container>
     );
   if (isError || !data)
     return (
-      <Container type="technology">
+      <Container>
         <Message>Error :(</Message>
       </Container>
     );
 
   return (
-    <Container type="technology">
+    <Container>
       <Content>
         <Title id="03" title="space launch 101" />
         <div className="w-full flex justify-start items-center gap-16 relative">

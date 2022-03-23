@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import { useFetchCrew } from "../../hooks/useCrew";
-import Container from "../Container";
 import Content from "../Content";
 import Message from "../Message";
 import Title from "../Title";
+
+const Container: React.FC = ({ children }) => {
+  return (
+    <div className={`h-screen bg-crew-desktop bg-cover bg-center`}>
+      {children}
+    </div>
+  );
+};
 
 const Crew: React.FC = () => {
   const [selected, setSelected] = useState(0);
@@ -11,18 +18,18 @@ const Crew: React.FC = () => {
 
   if (isLoading)
     return (
-      <Container type="crew">
+      <Container>
         <Message>Loading...</Message>
       </Container>
     );
   if (isError || !data)
     return (
-      <Container type="crew">
+      <Container>
         <Message>Error :(</Message>
       </Container>
     );
   return (
-    <Container type="crew">
+    <Container>
       <Content>
         <Title id="02" title="meet your crew" />
         <div className="grid grid-cols-2 w-full relative h-[40%]">

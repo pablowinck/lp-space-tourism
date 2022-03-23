@@ -1,10 +1,17 @@
 import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { useFetchDestination } from "../../hooks/useDestination";
-import Container from "../Container";
 import Content from "../Content";
 import Message from "../Message";
 import Title from "../Title";
+
+const Container: React.FC = ({ children }) => {
+  return (
+    <div className={`h-screen bg-destination-desktop bg-cover bg-center`}>
+      {children}
+    </div>
+  );
+};
 
 const Destination: React.FC = () => {
   const [selected, setSelected] = useState(0);
@@ -12,18 +19,18 @@ const Destination: React.FC = () => {
 
   if (isLoading)
     return (
-      <Container type="destination">
+      <Container>
         <Message>Loading...</Message>
       </Container>
     );
   if (isError || !data)
     return (
-      <Container type="destination">
+      <Container>
         <Message>Error :(</Message>
       </Container>
     );
   return (
-    <Container type="destination">
+    <Container>
       <Content>
         <Title id="01" title="pick your destination" />
         <div className="w-full grid grid-cols-2 gap-12 place-content-center">
